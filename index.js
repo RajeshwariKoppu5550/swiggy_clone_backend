@@ -1,13 +1,14 @@
 //this our main file in backend
 const express = require("express");
 const dotEnv = require("dotenv");
+const path = require('path');
 const mongoose = require("mongoose");
 const vendorRoutes = require('./routes/vendorRoutes');
 // const bodyParser = require('body-parser');
 const firmRoutes = require('./routes/firmRoutes');
 const productRoutes = require('./routes/productRoutes')
 const app = express()
-const PORT = 5000 || 4000;
+const PORT = process.env.PORT || 4000;
 dotEnv.config();
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -26,3 +27,4 @@ app.use('/home', (req, res) => {
 app.use('/product', productRoutes);
 app.use("/firm", firmRoutes);
 app.use('/vendor', vendorRoutes);
+app.use('/uploads', express.static('uploads'));
