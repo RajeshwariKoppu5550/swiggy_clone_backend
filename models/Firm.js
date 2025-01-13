@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+// firm model
 const firmSchema = new mongoose.Schema({
     firmName: {
         type: String,
